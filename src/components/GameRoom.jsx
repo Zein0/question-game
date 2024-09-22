@@ -29,13 +29,15 @@ function GameRoom() {
         });
         socket.on('revealCommonQuestion', (question) => {
             setCommonQuestion(question);
-            setPhase('guess')
         });
         socket.on('revealVotes', (votes) => {
+            setPhase('guess')
             setVotes(votes);
         });
         socket.on('finalResult', (result) => {
             setResultData(result)
+            setVotes([])
+            setCommonQuestion("")
             setPhase('results')
         });
         return () => {
